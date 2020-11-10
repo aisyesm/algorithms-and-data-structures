@@ -1,3 +1,5 @@
+import empty
+
 class ArrayStack:
     '''LIFO Stack implementation using a Python list as underlying storage.'''
 
@@ -23,7 +25,7 @@ class ArrayStack:
         Raise Empty exception if the stack is empty.
         '''
         if self.is_empty():
-            raise Empty('Stack is empty')
+            raise empty.Empty('Stack is empty')
         return self._data[-1]
 
     def pop(self):
@@ -32,12 +34,9 @@ class ArrayStack:
         Raise Empty exception if the stack is empty.
         '''
         if self.is_empty():
-            raise Empty('Stack is empty')
+            raise empty.Empty('Stack is empty')
         return self._data.pop()
 
-class Empty(Exception):
-    '''Error attemting to access an element from an empty array.'''
-    pass
 
 if __name__ == "__main__":
     S = ArrayStack()
