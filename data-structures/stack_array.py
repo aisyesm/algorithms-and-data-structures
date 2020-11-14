@@ -6,6 +6,7 @@ class ArrayStack:
     def __init__(self):
         '''Create an empty stack.'''
         self._data = []                     # nonpublic list instance
+        self._min_stack = []                 # keeps track of min value of the stack
 
     def __len__(self):
         '''Return the number of elements in the stack.'''
@@ -18,6 +19,9 @@ class ArrayStack:
     def push(self, e):
         '''Add element e to the top of the stack.'''
         self._data.append(e)
+        print("Pushed {} onto the stack!".format(e))
+        if not self._min_stack or self._min_stack[-1] >= e:
+            self._min_stack.append(e)
 
     def top(self):
         '''Return (but do not remove) the element at the top of the stack.
@@ -35,15 +39,47 @@ class ArrayStack:
         '''
         if self.is_empty():
             raise empty.Empty('Stack is empty')
+        print("Removed {} from the stack!".format(self.top()))
+        if self.top() == self._min_stack[-1]:
+            self._min_stack.pop()
+
         return self._data.pop()
 
+    def min(self):
+        if not self._min_stack:
+            raise empty.Empty('Stack is empty')
+        return self._min_stack[-1]
 
+
+# Driver code
 if __name__ == "__main__":
     S = ArrayStack()
     S.push(5)
     S.push(3)
-    print(len(S))
-    print(S.pop())
-    print(len(S))
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
     S.push(10)
-    print(S.top())
+    S.push(1)
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
+    S.pop()
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
+    S.push(3)
+    S.push(3)
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
+    S.pop()
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
+    S.pop()
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
+    S.pop()
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
+    S.pop()
+    print("Length: {}".format(len(S)))
+    print("Min: {}".format(S.min()))
+    S.pop()
+    print("Stack is empty: {}".format(S.is_empty()))
