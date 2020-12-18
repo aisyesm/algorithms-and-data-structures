@@ -22,7 +22,7 @@ class LinkedDeque(_DoublyLinkedBase):
 
     def insert_last(self, e):
         '''Add element e to the back of the deque.'''
-        self._insert_between(self._trailer, self._trailer._prev)
+        self._insert_between(self._trailer._prev, self._trailer)
 
     def delete_first(self):
         '''Remove and return the element from the front of the deque.
