@@ -31,7 +31,7 @@ class PositionalList(_DoublyLinkedBase):
             raise TypeError('p must be proper Position type.')
         if p._container is not self:
             raise ValueError('p does not belong to this container.')
-        if p._node is None:     # convetion for depresiated nodes
+        if p._node is None:     # convetion for depreciated nodes
             raise ValueError('p is no longer valid.')
         return p._node
 
@@ -73,7 +73,7 @@ class PositionalList(_DoublyLinkedBase):
     def _insert_between(self, e, pred, succ):
         '''Add element between two nodes and return Position.'''
         node = super()._insert_between(e, pred, succ)
-        self._make_position(node)
+        return self._make_position(node)
 
     def add_first(self, e):
         '''Insert element e at the front of the list and return Position.'''
